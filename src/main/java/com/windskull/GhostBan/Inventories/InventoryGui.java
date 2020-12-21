@@ -1,0 +1,61 @@
+package com.windskull.GhostBan.Inventories;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.InventoryHolder;
+import org.bukkit.inventory.ItemStack;
+
+public abstract class InventoryGui
+	implements InventoryHolder
+{
+	protected Map<Integer, InventoryButton> buttons = new HashMap<>();
+	protected Inventory inventory;
+
+	public abstract boolean onInventoryGuiClick(Player var1, int var2, ItemStack var3);
+
+	public abstract boolean onInventoryOpen(Player var1);
+
+	public abstract boolean onInventoryClose(Player var1);
+
+	public abstract boolean blockPlayerInventoryClick();
+
+	@Override
+	public Inventory getInventory()
+	{
+		return this.inventory;
+	}
+
+	protected void setItem(ItemStack item, InventoryButton action)
+	{
+		int fe = inventory.firstEmpty();
+		if(fe != -1)
+			setItem(fe,item,action);
+	}
+	
+	
+	protected void setItem(int slot, ItemStack item, InventoryButton action)
+	{
+		this.setItem(slot, item);
+		if (action != null)
+		{
+			this.buttons.put(slot, action);
+		}
+	}
+
+	protected void setItem(int slot, ItemStack item)
+	{
+		this.inventory.setItem(slot, item);
+	}
+
+	public InventoryButton getButton(int slot)
+	{
+		return Optional.ofNullable(this.buttons.get(slot)).orElse(e ->
+		{
+		});
+	}
+
+}

@@ -1,0 +1,8 @@
+name: GhostBan
+version: ${project.version} 
+api-version: 1.16
+main: com.windskull.GhostBan.GhostBanCore
+autors: [WindSkull]
+commands:
+    ghostban:
+       description: Main command for ghost ban plugin
