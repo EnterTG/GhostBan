@@ -18,7 +18,7 @@ import com.windskull.GhostBan.Listeners.PlayerInteractionsListener;
 public class GhostBanCore extends JavaPlugin implements Listener
 {
 
-	public static boolean USE_SPECTATOR_MODE = true;
+	public static boolean USE_SPECTATOR_MODE = false;
 	
 	
 	private static GhostBanCore core;

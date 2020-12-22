@@ -91,6 +91,14 @@ public class PlayerGhostBan extends BukkitRunnable implements Listener
 		
 	}
 	
+	public void showAll()
+	{
+		List<Player> players = new ArrayList<Player>(Bukkit.getOnlinePlayers());
+		List<Player> banned = Collections.list(GhostBanCore.getInstance().banedPlayer.keys());
+		players.removeAll(banned);
+		players.forEach(p -> p.showPlayer(GhostBanCore.getInstance(), player));
+		players.forEach(p -> player.showPlayer(GhostBanCore.getInstance(), p));
+	}
 	public void collectPlayers()
 	{
 		GhostBanPlayerCollectVisiblePlayersEvent kde = new GhostBanPlayerCollectVisiblePlayersEvent(player);
@@ -194,7 +202,6 @@ public class PlayerGhostBan extends BukkitRunnable implements Listener
 						if(team.hasPlayer(bannedPlayer))
 							team.removePlayer(bannedPlayer);
 				}
-				
 			}
 	}
 	
@@ -207,7 +214,12 @@ public class PlayerGhostBan extends BukkitRunnable implements Listener
 			onlineVisiblePlayers.add(e.getPlayer());
 			offlineVisiblePlayers.remove(e.getPlayer());
 			player.showPlayer(GhostBanCore.getInstance(), e.getPlayer());
-			e.getPlayer().showPlayer(GhostBanCore.getInstance(), player);
+			e.getPlayer().hidePlayer(GhostBanCore.getInstance(), player);
+		}
+		else
+		{
+			player.hidePlayer(GhostBanCore.getInstance(), e.getPlayer());
+			e.getPlayer().hidePlayer(GhostBanCore.getInstance(), player);
 		}
 	}
 
