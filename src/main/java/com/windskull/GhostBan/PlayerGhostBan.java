@@ -70,7 +70,7 @@ public class PlayerGhostBan extends BukkitRunnable implements Listener
 		team.addPlayer(player);
 		collectPlayers();
 		banPlayer();
-		
+		this.runTaskTimer(GhostBanCore.getInstance(), 0, 20);
 	}
 
 	public void hideFromAll()

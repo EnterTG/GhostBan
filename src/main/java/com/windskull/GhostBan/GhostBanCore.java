@@ -48,7 +48,7 @@ public class GhostBanCore extends JavaPlugin implements Listener
 	public void banPlayer(Player p)
 	{
 		PlayerGhostBan ban = new PlayerGhostBan(p);
-		ban.runTaskTimer(this, 0, 20);
+		
 		banedPlayer.put(p, ban);
 	}
 	
